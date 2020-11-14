@@ -1,5 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:snapchat_bottomnavbar_option5/setting_Screen.dart';
 import 'package:swipedetector/swipedetector.dart';
+
+import 'Widgets/UserDetailsWidgets/BitmojiSection/bitmojiText_Widget.dart';
+import 'Widgets/UserDetailsWidgets/BitmojiSection/bitmoji_Widget1.dart';
+import 'Widgets/UserDetailsWidgets/BitmojiSection/bitmoji_Widget2.dart';
+import 'Widgets/UserDetailsWidgets/BitmojiSection/bitmoji_Widget3.dart';
+import 'Widgets/UserDetailsWidgets/FriendSection/friendsSection_Widget.dart';
+import 'Widgets/UserDetailsWidgets/FriendSection/friendsText_WIdget.dart';
+import 'Widgets/UserDetailsWidgets/SnapMapSection/snapMapText_Widget.dart';
+import 'Widgets/UserDetailsWidgets/SnapMapSection/snapMapWidget_Map.dart';
+import 'Widgets/UserDetailsWidgets/StorySection/addTo_widget.dart';
+import 'Widgets/UserDetailsWidgets/StorySection/privateStory_Widget.dart';
+import 'Widgets/UserDetailsWidgets/StorySection/storiesText_Widget.dart';
 
 class userDetails extends StatefulWidget {
   @override
@@ -26,6 +39,8 @@ class _userDetailsState extends State<userDetails> {
         //   Icons.keyboard_arrow_down,
         //   color: Colors.black,
         // ),
+
+        // TODO: Fix the appbar and extend it a bit.
         title: Padding(
           padding: const EdgeInsets.all(18.0),
           child: Row(
@@ -34,11 +49,20 @@ class _userDetailsState extends State<userDetails> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Icon(
-                  Icons.settings,
+                  Icons.keyboard_arrow_down,
                   color: Colors.black,
                 ),
               ),
-              Icon(Icons.search, color: Colors.black)
+              GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => Settings(),
+                      ),
+                    );
+                  },
+                  child: Icon(Icons.settings, color: Colors.black))
             ],
           ),
         ),
@@ -52,117 +76,93 @@ class _userDetailsState extends State<userDetails> {
         },
         child: Container(
             height: MediaQuery.of(context).size.height,
-            color: Colors.pink,
+            // color: Colors.pink,
             child: Container(
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Container(
-                      height: 120,
-                      width: 120,
-                      decoration: BoxDecoration(
-                        color: Colors.yellow,
-                        borderRadius: BorderRadius.circular(
-                          20,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 18.0),
+                      child: Container(
+                        height: 120,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          color: Colors.yellow,
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                "https://lh3.googleusercontent.com/proxy/po-vMvGyQPi8w9GwKIw6fkvPI8due1szCHb0rIFd4XDbktd0g0JEzmfl5so4xy25exurZITFmM4djgMrvOZgC4oKK0QKX4y5iaACO2A19W5VSKCsex_IjDhvzUXi",
+                              ),
+                              fit: BoxFit.cover),
+                          borderRadius: BorderRadius.circular(
+                            20,
+                          ),
                         ),
                       ),
                     ),
-                    Text(
-                      "Harsh Khatri",
-                      style: TextStyle(
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: Text(
+                        "Harsh Khatri",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Text(
+                        "callme_shhaggy * 28,919 * T",
+                        style: TextStyle(
+                          color: Colors.grey[400],
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    storiesText(),
+                    SizedBox(height: 4),
+                    addTo("My"),
+                    addTo("Our"),
+                    privateStory(),
+                    friendsText(),
+                    friendSection("Add Friends", Icons.supervised_user_circle),
+                    friendSection("My Friends", Icons.list_alt_outlined),
+                    bitmojiText(),
+                    bitmojiWidget1(),
+                    bitmojiWidget2(),
+                    bitmojiWidget3(),
+                    snapMapText(),
+                    snapMap_Map(context),
+
+                    // TODO: Replace this with snapchat icon
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 38.0,
+                      ),
+                      child: Icon(
+                        Icons.gavel_sharp,
                         color: Colors.grey,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
+                        size: 30,
                       ),
                     ),
-                    Text(
-                      "callme_shhaggy * 28,919 * T",
-                      style: TextStyle(
-                        color: Colors.grey[400],
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Stories",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15.0),
+                      child: Text(
+                        "Joined Snapchat on 14 March 2017.",
+                        style: TextStyle(
                             color: Colors.grey,
-                            borderRadius: BorderRadius.circular(
-                              24,
-                            ),
-                          ),
-                          child: Text(
-                            "+ Private Story",
-                            style: TextStyle(
-                              color: Colors.grey[600],
-                            ),
-                          ),
-                        ),
-                      ],
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700),
+                      ),
                     ),
-                    Container(height: 500, color: Colors.black),
-                    Container(height: 500, color: Colors.yellow),
+                    SizedBox(height: 90),
                   ],
                 ),
               ),
-            )
-            // GestureDetector(
-            //   onTap: () {
-            //     Navigator.pop(context);
-            //   },
-            //   child: Icon(
-            //     Icons.cancel_outlined,
-            //   ),
-            // ),
-
-            ),
+            )),
       ),
     );
-
-    // Container(
-    //   height: MediaQuery.of(context).size.height,
-    //   color: Colors.pink,
-    //   child:  Container(
-    //     child: Expanded(
-    //               child: Column(
-    //         children: [
-    //           Padding(
-    //             padding: const EdgeInsets.only(top:35.0,left:8,right:8),
-    //             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //               children: [
-    //                 Icon(
-    //                   Icons.keyboard_arrow_down,
-    //                   color: Colors.black,
-    //                   size: 30,
-    //                 ),
-    //                 Icon(Icons.settings,color:Colors.black,size:30,)
-    //               ],
-    //             ),
-    //           ),
-    //           Container(height:500,color:Colors.black),
-    //           Container(height:500,color:Colors.yellow),
-    //         ],
-    //       ),
-    //     ),
-    //   )
-    //       // GestureDetector(
-    //       //   onTap: () {
-    //       //     Navigator.pop(context);
-    //       //   },
-    //       //   child: Icon(
-    //       //     Icons.cancel_outlined,
-    //       //   ),
-    //       // ),
-
-    // );
   }
 }
