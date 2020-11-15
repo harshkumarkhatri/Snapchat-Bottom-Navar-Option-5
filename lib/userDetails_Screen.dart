@@ -23,47 +23,58 @@ class _userDetailsState extends State<userDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 5, automaticallyImplyLeading: false,
-        // actions: [
-        // Padding(
-        //   padding: const EdgeInsets.all(8.0),
-        //   child: Icon(
-        //     Icons.settings,
-        //     color: Colors.black,
-        //   ),
-        // ),
-        // ],
-        // leading: Icon(
-        //   Icons.keyboard_arrow_down,
-        //   color: Colors.black,
-        // ),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(70),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 25),
+          child: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 5, automaticallyImplyLeading: false,
+            // actions: [
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Icon(
+            //     Icons.settings,
+            //     color: Colors.black,
+            //   ),
+            // ),
+            // ],
+            // leading: Icon(
+            //   Icons.keyboard_arrow_down,
+            //   color: Colors.black,
+            // ),
 
-        // TODO: Fix the appbar and extend it a bit.
-        title: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.keyboard_arrow_down,
-                  color: Colors.black,
-                ),
-              ),
-              GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => Settings(),
+            // TODO: Fix the appbar and extend it a bit.
+            title: Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.keyboard_arrow_down,
+                        color: Colors.black,
                       ),
-                    );
-                  },
-                  child: Icon(Icons.settings, color: Colors.black))
-            ],
+                    ),
+                  ),
+                  GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => Settings(),
+                          ),
+                        );
+                      },
+                      child: Icon(Icons.settings, color: Colors.black))
+                ],
+              ),
+            ),
           ),
         ),
       ),
