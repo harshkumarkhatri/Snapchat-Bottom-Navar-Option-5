@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:snapchat_bottomnavbar_option5/Widgets/discoverSubscriptions_widget.dart';
 import 'package:snapchat_bottomnavbar_option5/Widgets/forYou_widget.dart';
 import 'package:snapchat_bottomnavbar_option5/addFriends_Screen.dart';
+import 'package:snapchat_bottomnavbar_option5/search_Screen.dart';
 import 'package:snapchat_bottomnavbar_option5/userDetails_Screen.dart';
 
 void main() {
@@ -94,7 +95,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.white,
                 size: 30,
               ),
-              // onPressed: _onClickNotification,
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => Search()));
+              },
             ),
             Expanded(
               child: Center(
